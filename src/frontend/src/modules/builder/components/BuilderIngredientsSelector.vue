@@ -22,7 +22,7 @@
             <span class="filling" :style="`--item-image: url(${ingredient.image})`" :draggable="ingredient.count<3" @dragstart="onIngredientDragStart(ingredient)" @dragend="onIngredientDragEnd">{{ ingredient.name }}</span>
 
 
-            <ItemCounter class="counter--orange ingredients__counter" :ingredient="ingredient"></ItemCounter>
+            <ItemCounter class="counter--orange ingredients__counter" :value="ingredient.count" :maxCount="3" @changed="onIngredientChange($event, ingredient)"></ItemCounter>
           </li>
         </ul>
 
@@ -47,6 +47,9 @@ export default {
     onIngredientDragEnd(){
       this.builder.draggedIngredientId = null
     },
+    onIngredientChange(event, ingredient){
+      ingredient.count = event
+    }
   }
 }
 </script>
