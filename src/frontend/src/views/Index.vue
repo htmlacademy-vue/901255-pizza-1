@@ -6,9 +6,9 @@
       <div class="content__wrapper">
         <h1 class="title title--big">Конструктор пиццы</h1>
 
-        <BuilderDoughSelector :builder="builder"></BuilderDoughSelector>
-        <BuilderSizeSelector :builder="builder"></BuilderSizeSelector> 
-        <BuilderIngredientsSelector :builder="builder"></BuilderIngredientsSelector>
+        <BuilderDoughSelector :doughs="builder.pizza.dough" v-model="builder.dough"></BuilderDoughSelector>
+        <BuilderSizeSelector :sizes="builder.pizza.sizes" v-model="builder.size"></BuilderSizeSelector> 
+        <BuilderIngredientsSelector :sauces="builder.pizza.sauces" v-model="builder.sauce" :ingredients="builder.ingredients"></BuilderIngredientsSelector>
         
 
         <div class="content__pizza">

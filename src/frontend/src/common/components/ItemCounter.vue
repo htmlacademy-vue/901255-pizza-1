@@ -18,7 +18,7 @@ export default {
   emits: ['changed'],
   data(){
     return {
-      'count': this.value,
+      count: this.value,
     }
   },
   methods: {
@@ -39,6 +39,12 @@ export default {
   watch: {
     value(){
       this.count = this.value
+    },
+    count(){
+      if (this.count > 3){
+        this.count = 3
+      }
+      this.$emit('changed', this.count)
     }
   }
 }

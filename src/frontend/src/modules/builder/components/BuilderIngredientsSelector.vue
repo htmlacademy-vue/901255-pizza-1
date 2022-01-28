@@ -8,8 +8,8 @@
       <div class="ingredients__sauce">
         <p>Основной соус:</p>
 
-        <label class="radio ingredients__input" v-for="sauce in builder.pizza.sauces" :key="sauce.id">
-          <input type="radio" name="sauce" :value="sauce.id" v-model="builder.sauce">
+        <label class="radio ingredients__input" v-for="sauce in sauces" :key="sauce.id">
+          <input type="radio" name="sauce" :value="sauce.id" :checked="value===sauce.id" @input="$emit('input', sauce.id)">
           <span>{{ sauce.name }}</span>
         </label>
       </div>
@@ -18,7 +18,7 @@
         <p>Начинка:</p>
 
         <ul class="ingredients__list">
-          <li class="ingredients__item" v-for="ingredient in builder.ingredients" :key="ingredient.id">
+          <li class="ingredients__item" v-for="ingredient in ingredients" :key="ingredient.id">
             <span class="filling" :style="`--item-image: url(${ingredient.image})`" :draggable="ingredient.count<3" @dragstart="onIngredientDragStart(ingredient)" @dragend="onIngredientDragEnd">{{ ingredient.name }}</span>
 
 
@@ -36,7 +36,7 @@
 <script>
 import ItemCounter from '@/common/components/ItemCounter.vue';
 export default {
-  props: ['builder'],
+  props: ['sauces', 'value', 'ingredients'],
   components: {
     ItemCounter
   },

@@ -4,8 +4,8 @@
     <h2 class="title title--small sheet__title">Выберите тесто</h2>
     <div class="sheet__content dough">
 
-      <label class="dough__input" :style="`--dough-image: url(${dough.image})`" v-for="dough in builder.pizza.dough" :key="dough.id">
-        <input type="radio" name="dought" :value="dough.id" class="visually-hidden" v-model="builder.dough">
+      <label class="dough__input" :style="`--dough-image: url(${dough.image})`" v-for="dough in doughs" :key="dough.id">
+        <input type="radio" name="dought" :value="dough.id" class="visually-hidden" :checked="dough.id===value" @input="$emit('input', dough.id)">
         <b>{{ dough.name }}</b>
         <span>{{ dough.description }}</span>
       </label>
@@ -19,7 +19,7 @@
 <script>
 export default{
   name: 'BuilderDoughSelector',
-  props: ['builder']
+  props: ['doughs', 'value'],
 }
 </script>
 
